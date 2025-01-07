@@ -1,4 +1,3 @@
-// src/components/CommentSection.tsx
 "use client";
 
 import { useState } from 'react';
@@ -13,8 +12,10 @@ const CommentSection = ({ bookId }: CommentSectionProps) => {
 
   const handleCommentSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (newComment.trim()) {  // Prevent empty comments
-      setComments((prev) => [...prev, newComment.trim()]);
+    if (newComment.trim()) {
+      // Use the bookId to identify which book the comment is for (e.g., in comment text)
+      const commentWithBookId = `Book ${bookId}: ${newComment.trim()}`;
+      setComments((prev) => [...prev, commentWithBookId]); // Add the comment with bookId
       setNewComment('');
     }
   };
